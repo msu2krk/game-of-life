@@ -52,13 +52,16 @@ testButton.addEventListener("click", () => {
 	initGenArrays(); //Set all array locations to 0=dead
 });
 
-// const evolveButton = document.getElementById("evolve-button");
+const evolveButton = document.getElementById("evolve-button");
 
-// evolveButton.addEventListener("click", () => {
-// 	createNextGen(); //Apply the rules
-// 	updateCurrGen(); //Set Current values from new generation
-// 	updateWorld(); //Update the world view
-// });
+evolveButton.addEventListener("click", () => {
+	createNextGen(); //Apply the rules
+	updateCurrGen(); //Set Current values from new generation
+	updateWorld();
+	if (started) {
+		timer = setTimeout(evolve, evolutionSpeed);
+	} //Update the world view
+});
 
 function createWorld() {
 	let world = document.querySelector("#world");
@@ -134,7 +137,7 @@ function getNeighborCount(row, col) {
 	// Make sure we are not on the bottom right
 	if (nrow + 1 < rows && ncol + 1 < cols) {
 		//Check bottom right neighbor
-		if (currGen[nrow + 1][ncol + 1] == 1) count++;
+		if (currGen[nrow + 1][ncol + 1] === 1) count++;
 	}
 
 	// Make sure we are not on the last row
@@ -208,8 +211,7 @@ function evolve() {
 }
 
 const startButton = document.querySelector("#start-button");
-startButton.addEventListener("click", startStopGol());
-function startStopGol() {
+startButton.addEventListener("click", () => {
 	let startstop = document.querySelector("#start-button");
 
 	if (!started) {
@@ -221,10 +223,9 @@ function startStopGol() {
 		startstop.value = "Start Reproducing";
 		clearTimeout(timer);
 	}
-}
+});
 
 const resetButton = document.querySelector("#reset-button");
-resetButton.addEventListener("click", resetWorld());
-function resetWorld() {
+resetButton.addEventListener("click", () => {
 	location.reload();
-}
+});
