@@ -41,4 +41,12 @@ td {
     border: 1px solid #a9a9a9;
     width: 10px;
     height: 10px;
+
+    &.dead {
+        background-color: transparent;
+    }
+
+    &.alive {
+        background-color: #000000;
+    }
 }
