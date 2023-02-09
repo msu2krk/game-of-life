@@ -20,11 +20,13 @@
         </ul>
       </header>
       <div class="controls">
-        <label for="rows-input">Number of rows</label>
-        <input type="number" name="rows-input" id="rows-input" value="">
+        <!-- <label for="rows-input">Number of rows</label> -->
+        <input type="number" name="rows" id="rows-input" value='35' max="100">
         <label for="columns-input">Number of columns</label>
-        <input type="number" name="columns-input" id="columns-input" value="">
+        <input type="number" name="columns" id="columns-input" value="35" max="100">
         <button class="test-button" id="test-button">test</button>
+        <button class="evolve-button" id="evolve-button">evolve</button>
+
       </div>
       <div class="world" id='world'>
       </div>
