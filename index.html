@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starter</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>Game of life</h1>
+        <h2>Rules</h2>
+        <ul>
+          <li>Any live cell with fewer than two live neighbors dies, as if caused by under-population.</li>
+          <li>Any live cell with two or three live neighbors lives on to the next generation.</li>
+          <li>Any live cell with more than three live neighbors dies, as if by overcrowding.</li>
+          <li>Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</li>
+        </ul>
+      </header>
+      <div class="controls">
+        <label for="rows-input">Number of rows</label>
+        <input type="number" name="rows-input" id="rows-input" value="">
+        <label for="columns-input">Number of columns</label>
+        <input type="number" name="columns-input" id="columns-input" value="">
+        <button class="test-button" id="test-button">test</button>
+      </div>
+      <div class="world" id='world'>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+
+</html>
