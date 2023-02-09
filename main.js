@@ -5,6 +5,10 @@ const columnsInput = document.getElementById("columns-input");
 
 let rows = rowsInput.getAttribute("value");
 let cols = columnsInput.getAttribute("value");
+
+let started = false; // Set to true when use clicks start
+let timer; //To control evolutions
+let evolutionSpeed = 300;
 rowsInput.addEventListener("change", (event) => {
 	rowsInput.setAttribute("value", event.target.value);
 	rows = parseInt(event.target.value);
@@ -48,13 +52,13 @@ testButton.addEventListener("click", () => {
 	initGenArrays(); //Set all array locations to 0=dead
 });
 
-const evolveButton = document.getElementById("evolve-button");
+// const evolveButton = document.getElementById("evolve-button");
 
-evolveButton.addEventListener("click", () => {
-	createNextGen(); //Apply the rules
-	updateCurrGen(); //Set Current values from new generation
-	updateWorld(); //Update the world view
-});
+// evolveButton.addEventListener("click", () => {
+// 	createNextGen(); //Apply the rules
+// 	updateCurrGen(); //Set Current values from new generation
+// 	updateWorld(); //Update the world view
+// });
 
 function createWorld() {
 	let world = document.querySelector("#world");
@@ -192,4 +196,35 @@ function updateWorld(row, col) {
 			}
 		}
 	}
+}
+
+function evolve() {
+	createNextGen(); //Apply the rules
+	updateCurrGen(); //Set Current values from new generation
+	updateWorld(); //Update the world view
+	if (started) {
+		timer = setTimeout(evolve, evolutionSpeed);
+	}
+}
+
+const startButton = document.querySelector("#start-button");
+startButton.addEventListener("click", startStopGol());
+function startStopGol() {
+	let startstop = document.querySelector("#start-button");
+
+	if (!started) {
+		started = true;
+		startstop.value = "Stop Reproducing";
+		evolve();
+	} else {
+		started = false;
+		startstop.value = "Start Reproducing";
+		clearTimeout(timer);
+	}
+}
+
+const resetButton = document.querySelector("#reset-button");
+resetButton.addEventListener("click", resetWorld());
+function resetWorld() {
+	location.reload();
 }
