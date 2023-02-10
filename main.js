@@ -26,12 +26,11 @@ let nextGen = [rows];
 const createButton = document.getElementById("create-button");
 
 createButton.addEventListener("click", () => {
-	console.log("rows: ", typeof rows, rows);
-	console.log("cols: ", typeof cols, cols);
 	document.getElementById("world").innerHTML = ``;
 	createWorld();
 	createGenArrays();
 	initGenArrays();
+	console.log("Game board ready!");
 });
 const startButton = document.querySelector("#start-button");
 startButton.addEventListener("click", () => {
@@ -39,11 +38,13 @@ startButton.addEventListener("click", () => {
 
 	if (!started) {
 		started = true;
-		startstop.value = "Stop Reproducing";
+		startstop.innerHTML = "Stop";
+		console.log("Let's play!");
 		evolve();
 	} else {
 		started = false;
-		startstop.value = "Start Reproducing";
+		startstop.innerHTML = "Start";
+		console.log("Game stopped!");
 		clearTimeout(timer);
 	}
 });
@@ -51,6 +52,7 @@ startButton.addEventListener("click", () => {
 const resetButton = document.querySelector("#reset-button");
 resetButton.addEventListener("click", () => {
 	location.reload();
+	console.log("Reload...");
 });
 
 const randomButton = document.querySelector("#random-button");
@@ -60,6 +62,7 @@ randomButton.addEventListener("click", () => {
 	initGenArrays();
 	document.getElementById("world").innerHTML = ``;
 	random();
+	console.log("Random cells are alive.");
 });
 
 // Create arrays to hold cells attributes
@@ -98,8 +101,6 @@ function createWorld() {
 		tbl.appendChild(tr);
 	}
 	world.appendChild(tbl);
-	console.log("currGen", currGen);
-	console.log("nextGen", nextGen);
 }
 
 //change alive/dead status by click on cell
@@ -110,13 +111,13 @@ function cellClick() {
 	// Toggle cell alive or dead
 	if (this.className === "alive") {
 		this.setAttribute("class", "dead");
+		console.log(`Cell ${this.id} is dead now.`);
 		currGen[row][col] = 0;
 	} else {
 		this.setAttribute("class", "alive");
 		currGen[row][col] = 1;
+		console.log(`Cell ${this.id} is alive now.`);
 	}
-	console.log("currGen click", currGen);
-	console.log("nextGen click", nextGen);
 }
 
 //counting dead/alive neighbors

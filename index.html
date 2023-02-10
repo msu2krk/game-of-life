@@ -4,15 +4,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Starter</title>
+    <title>Game of live. [by msu2krk]</title>
   </head>
 
   <body>
     <div class="container">
-      <header>
-        <h1>Game of life</h1>
-        <h2>Rules</h2>
-        <ul>
+      <header class="header">
+        <h1 class="header__h1">Game of life</h1>
+        <h2 class="header__h2">Rules</h2>
+        <ul class="header__description">
           <li>Any live cell with fewer than two live neighbors dies, as if caused by under-population.</li>
           <li>Any live cell with two or three live neighbors lives on to the next generation.</li>
           <li>Any live cell with more than three live neighbors dies, as if by overcrowding.</li>
@@ -20,15 +20,19 @@
         </ul>
       </header>
       <div class="controls">
-        <!-- <label for="rows-input">Number of rows</label> -->
-        <input type="number" name="rows" id="rows-input" value='' max="100">
-        <label for="columns-input">Number of columns</label>
-        <input type="number" name="columns" id="columns-input" value="" max="100">
-        <button class="create-button" id="create-button">Create Board</button>
-        <button class="start-button" id="start-button">Start</button>
-        <button class="reset-button" id="reset-button">Reset</button>
-        <!-- <button class="evolve-button" id="evolve-button">evolve</button> -->
-        <button class="random-button" id="random-button">Random</button>
+        <div class="controls__inputs">
+          <label for="rows-input">Number of rows</label>
+          <input type="number" name="rows" id="rows-input" value=''>
+          <label for="columns-input">Number of columns</label>
+          <input type="number" name="columns" id="columns-input" value="">
+        </div>
+        <div class="controls__buttons">
+          <button class="controls__buttons create-button" id="create-button">Create Board</button>
+          <button class="controls__buttons start-button" id="start-button">Start</button>
+          <button class="controls__buttons reset-button" id="reset-button">Reset</button>
+          <!-- <button class="evolve-button" id="evolve-button">evolve</button> -->
+          <button class="random-button" id="random-button">Random</button>
+        </div>
 
       </div>
       <div class="world" id='world'>
