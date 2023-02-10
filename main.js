@@ -23,9 +23,9 @@ let currGen = [rows];
 let nextGen = [rows];
 
 //buttons & listeners
-const testButton = document.getElementById("test-button");
+const createButton = document.getElementById("create-button");
 
-testButton.addEventListener("click", () => {
+createButton.addEventListener("click", () => {
 	console.log("rows: ", typeof rows, rows);
 	console.log("cols: ", typeof cols, cols);
 	document.getElementById("world").innerHTML = ``;
