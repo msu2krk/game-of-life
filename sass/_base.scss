@@ -2,6 +2,10 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    font-family: $mainFontFamily;
+}
+
 a {
     text-decoration: none;
 }
@@ -12,7 +16,8 @@ h3,
 h4,
 h5,
 h5,
-h7 {
+h6 {
+
     padding: 15px;
 }
 

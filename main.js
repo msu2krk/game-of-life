@@ -88,6 +88,7 @@ function createWorld() {
 
 	let tbl = document.createElement("table");
 	tbl.setAttribute("id", "worldgrid");
+	tbl.setAttribute("class", "world__table");
 	for (let i = 0; i < rows; i++) {
 		let tr = document.createElement("tr");
 		for (let j = 0; j < cols; j++) {

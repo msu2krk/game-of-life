@@ -4,6 +4,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Condensed:wght@400;700&display=swap"
+      rel="stylesheet">
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
@@ -29,9 +35,9 @@
       </header>
       <div class="controls">
         <div class="controls__inputs">
-          <label for="rows-input">Number of rows</label>
+          <label for="rows-input">Number of rows: </label>
           <input type="number" name="rows" id="rows-input" value=''>
-          <label for="columns-input">Number of columns</label>
+          <label for="columns-input">Number of columns: </label>
           <input type="number" name="columns" id="columns-input" value="">
         </div>
         <div class="controls__buttons">
@@ -39,7 +45,7 @@
           <button class="controls__buttons start-button" id="start-button">Start</button>
           <button class="controls__buttons reset-button" id="reset-button">Reset</button>
           <!-- <button class="evolve-button" id="evolve-button">evolve</button> -->
-          <button class="random-button" id="random-button">Random</button>
+          <button class="controls__buttons random-button" id="random-button">Random</button>
         </div>
 
       </div>
