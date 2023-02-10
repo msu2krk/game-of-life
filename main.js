@@ -242,11 +242,11 @@ resetButton.addEventListener("click", () => {
 
 const randomButton = document.querySelector("#random-button");
 randomButton.addEventListener("click", () => {
+	createWorld();
+	createGenArrays(); // current and next generations
+	initGenArrays();
 	document.getElementById("world").innerHTML = ``;
 	random();
-	createNextGen();
-	updateCurrGen();
-	updateWorld();
 });
 
 // if (Math.random() > 0.5) {
@@ -269,25 +269,46 @@ function random() {
 		let tr = document.createElement("tr");
 		for (let j = 0; j < cols; j++) {
 			let cell = document.createElement("td");
-			let loc = cell.id.split("_");
-			let row = Number(loc[0]); //Get i
-			let col = Number(loc[1]); //Get j
-
 			if (Math.random() > 0.5) {
 				cell.setAttribute("id", i + "_" + j);
 				cell.setAttribute("class", "alive");
-				currGen[row][col] = 1;
 				cell.addEventListener("click", cellClick);
 			} else {
 				cell.setAttribute("id", i + "_" + j);
 				cell.setAttribute("class", "dead");
-				currGen[row][col] = 0;
 				cell.addEventListener("click", cellClick);
 			}
 
 			tr.appendChild(cell);
+			let loc = cell.id.split("_");
+			let row = Number(loc[0]); //Get i
+			let col = Number(loc[1]); //Get j
+			// Toggle cell alive or dead
+			if (cell.className === "alive") {
+				cell.setAttribute("class", "alive");
+				currGen[row][col] = 1;
+			} else {
+				cell.setAttribute("class", "dead");
+				currGen[row][col] = 0;
+			}
 		}
 		tbl.appendChild(tr);
 	}
 	world.appendChild(tbl);
 }
+
+// function randomPrepareToEvolve() {
+// 	let loc = this.id.split("_");
+// 	let row = Number(loc[0]); //Get i
+// 	let col = Number(loc[1]); //Get j
+// 	// Toggle cell alive or dead
+// 	if (this.className === "alive") {
+// 		this.setAttribute("class", "dead");
+// 		currGen[row][col] = 0;
+// 	} else {
+// 		this.setAttribute("class", "alive");
+// 		currGen[row][col] = 1;
+// 	}
+// 	console.log("currGen prepare", currGen);
+// 	console.log("nextGen prepare", nextGen);
+// }
