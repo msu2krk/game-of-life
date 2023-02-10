@@ -54,14 +54,14 @@ testButton.addEventListener("click", () => {
 
 const evolveButton = document.getElementById("evolve-button");
 
-evolveButton.addEventListener("click", () => {
-	createNextGen(); //Apply the rules
-	updateCurrGen(); //Set Current values from new generation
-	updateWorld();
-	if (started) {
-		timer = setTimeout(evolve, evolutionSpeed);
-	} //Update the world view
-});
+// evolveButton.addEventListener("click", () => {
+// 	createNextGen(); //Apply the rules
+// 	updateCurrGen(); //Set Current values from new generation
+// 	updateWorld();
+// 	if (started) {
+// 		timer = setTimeout(evolve, evolutionSpeed);
+// 	} //Update the world view
+// });
 
 function createWorld() {
 	let world = document.querySelector("#world");
@@ -81,6 +81,8 @@ function createWorld() {
 		tbl.appendChild(tr);
 	}
 	world.appendChild(tbl);
+	console.log("currGen", currGen);
+	console.log("nextGen", nextGen);
 }
 
 function cellClick() {
@@ -95,6 +97,8 @@ function cellClick() {
 		this.setAttribute("class", "alive");
 		currGen[row][col] = 1;
 	}
+	console.log("currGen click", currGen);
+	console.log("nextGen click", nextGen);
 }
 
 function getNeighborCount(row, col) {
@@ -137,7 +141,7 @@ function getNeighborCount(row, col) {
 	// Make sure we are not on the bottom right
 	if (nrow + 1 < rows && ncol + 1 < cols) {
 		//Check bottom right neighbor
-		if (currGen[nrow + 1][ncol + 1] === 1) count++;
+		if (currGen[nrow + 1][ncol + 1] == 1) count++;
 	}
 
 	// Make sure we are not on the last row
@@ -174,6 +178,8 @@ function createNextGen(row, col) {
 			}
 		}
 	}
+	console.log("currGen func createNextGen", currGen);
+	console.log("nextGen func createNextGen", nextGen);
 }
 
 function updateCurrGen(row, col) {
@@ -186,6 +192,8 @@ function updateCurrGen(row, col) {
 			nextGen[row][col] = 0;
 		}
 	}
+	console.log("currGen func updateCurrGen", currGen);
+	console.log("nextGen func updateCurrGen", nextGen);
 }
 function updateWorld(row, col) {
 	let cell = "";
@@ -199,6 +207,8 @@ function updateWorld(row, col) {
 			}
 		}
 	}
+	console.log("currGen func updateWorld", currGen);
+	console.log("nextGen func updateWorld", nextGen);
 }
 
 function evolve() {
@@ -229,3 +239,55 @@ const resetButton = document.querySelector("#reset-button");
 resetButton.addEventListener("click", () => {
 	location.reload();
 });
+
+const randomButton = document.querySelector("#random-button");
+randomButton.addEventListener("click", () => {
+	document.getElementById("world").innerHTML = ``;
+	random();
+	createNextGen();
+	updateCurrGen();
+	updateWorld();
+});
+
+// if (Math.random() > 0.5) {
+// 	let cell = document.createElement("td");
+// 	cell.setAttribute("id", i + "_" + j);
+// 	cell.setAttribute("class", "alive");
+// 	cell.addEventListener("click", cellClick);
+// } else {
+// 	let cell = document.createElement("td");
+// 	cell.setAttribute("id", i + "_" + j);
+// 	cell.setAttribute("class", "dead");
+// 	cell.addEventListener("click", cellClick);
+// }
+function random() {
+	let world = document.querySelector("#world");
+
+	let tbl = document.createElement("table");
+	tbl.setAttribute("id", "worldgrid");
+	for (let i = 0; i < rows; i++) {
+		let tr = document.createElement("tr");
+		for (let j = 0; j < cols; j++) {
+			let cell = document.createElement("td");
+			let loc = cell.id.split("_");
+			let row = Number(loc[0]); //Get i
+			let col = Number(loc[1]); //Get j
+
+			if (Math.random() > 0.5) {
+				cell.setAttribute("id", i + "_" + j);
+				cell.setAttribute("class", "alive");
+				currGen[row][col] = 1;
+				cell.addEventListener("click", cellClick);
+			} else {
+				cell.setAttribute("id", i + "_" + j);
+				cell.setAttribute("class", "dead");
+				currGen[row][col] = 0;
+				cell.addEventListener("click", cellClick);
+			}
+
+			tr.appendChild(cell);
+		}
+		tbl.appendChild(tr);
+	}
+	world.appendChild(tbl);
+}
