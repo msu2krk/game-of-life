@@ -14,6 +14,7 @@
     "vite": "^3.1.0"
   },
   "dependencies": {
-    "modern-normalize": "^1.1.0"
+    "modern-normalize": "^1.1.0",
+    "sass-extras": "^1.0.0"
   }
 }

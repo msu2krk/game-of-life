@@ -17,7 +17,7 @@ let cols = columnsInput.getAttribute("value");
 
 let started = false;
 let timer;
-let evolutionSpeed = 300;
+let evolutionSpeed = 200;
 
 let currGen = [rows];
 let nextGen = [rows];
@@ -32,18 +32,18 @@ createButton.addEventListener("click", () => {
 	initGenArrays();
 	console.log("Game board ready!");
 });
+
 const startButton = document.querySelector("#start-button");
 startButton.addEventListener("click", () => {
-	let startstop = document.querySelector("#start-button");
-
+	let startStop = document.querySelector("#start-button");
 	if (!started) {
 		started = true;
-		startstop.innerHTML = "Stop";
+		startStop.innerHTML = "Stop";
 		console.log("Let's play!");
 		evolve();
 	} else {
 		started = false;
-		startstop.innerHTML = "Start";
+		startStop.innerHTML = "Start";
 		console.log("Game stopped!");
 		clearTimeout(timer);
 	}
@@ -58,7 +58,7 @@ resetButton.addEventListener("click", () => {
 const randomButton = document.querySelector("#random-button");
 randomButton.addEventListener("click", () => {
 	createWorld();
-	createGenArrays(); // current and next generations
+	createGenArrays();
 	initGenArrays();
 	document.getElementById("world").innerHTML = ``;
 	random();
@@ -112,8 +112,8 @@ function cellClick() {
 	// Toggle cell alive or dead
 	if (this.className === "alive") {
 		this.setAttribute("class", "dead");
-		console.log(`Cell ${this.id} is dead now.`);
 		currGen[row][col] = 0;
+		console.log(`Cell ${this.id} is dead now.`);
 	} else {
 		this.setAttribute("class", "alive");
 		currGen[row][col] = 1;
@@ -158,15 +158,15 @@ function createNextGen(row, col) {
 	for (row in currGen) {
 		for (col in currGen[row]) {
 			let neighbors = getNeighborCount(row, col);
-			if (currGen[row][col] == 1) {
+			if (currGen[row][col] === 1) {
 				if (neighbors < 2) {
 					nextGen[row][col] = 0;
-				} else if (neighbors == 2 || neighbors == 3) {
+				} else if (neighbors === 2 || neighbors === 3) {
 					nextGen[row][col] = 1;
 				} else if (neighbors > 3) {
 					nextGen[row][col] = 0;
 				}
-			} else if (currGen[row][col] == 0) {
+			} else if (currGen[row][col] === 0) {
 				if (neighbors == 3) {
 					nextGen[row][col] = 1;
 				}
@@ -213,9 +213,9 @@ function evolve() {
 // put random alive cells on a game board, for lazy people
 function random() {
 	let world = document.querySelector("#world");
-
 	let tbl = document.createElement("table");
 	tbl.setAttribute("id", "worldgrid");
+	tbl.setAttribute("class", "world__table");
 	for (let i = 0; i < rows; i++) {
 		let tr = document.createElement("tr");
 		for (let j = 0; j < cols; j++) {
@@ -231,9 +231,8 @@ function random() {
 			}
 			tr.appendChild(cell);
 			let loc = cell.id.split("_");
-			let row = Number(loc[0]); //Get i
-			let col = Number(loc[1]); //Get j
-			// Toggle cell alive or dead
+			let row = Number(loc[0]);
+			let col = Number(loc[1]);
 			if (cell.className === "alive") {
 				cell.setAttribute("class", "alive");
 				currGen[row][col] = 1;
