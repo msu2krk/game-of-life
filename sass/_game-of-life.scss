@@ -4,11 +4,16 @@
   text-align: center;
 
   &__h1 {
-    margin: 15px auto 5px auto
+    margin-inline: 20px;
+    font-size: $h1FontSize;
+  }
+
+  &__h2 {
+    font-size: $h2FontSize;
   }
 
   &__description {
-    font-size: small;
+    font-size: $mainFontSize;
     text-align: justify;
   }
 }
@@ -19,8 +24,13 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 10px;
-  padding: 5px 10px;
+  gap: 25px;
+  margin: 15px;
+  font-size: $mainFontSize;
+
+  @media(max-width:750px) {
+    flex-direction: column;
+  }
 
   @media(max-width:500px) {
     flex-direction: column;
@@ -30,8 +40,7 @@
     display: block;
     display: flex;
     gap: 15px;
-    justify-content: space-between;
-    margin: 5px;
+    justify-content: space-around;
     // padding: 10px 15px;
 
     @media (max-width: 500px) {
@@ -48,7 +57,6 @@
       &:focus,
       &:focus-visible {
         outline: none;
-        border: none;
       }
     }
   }
@@ -58,9 +66,7 @@
     display: flex;
     gap: 15px;
     align-content: center;
-    justify-content: space-between;
-    margin: 5px;
-    // padding: 5px 10px;
+    justify-content: space-around;
     border-radius: 10px;
 
     @media (max-width: 500px) {
@@ -79,7 +85,7 @@
   max-width: 100%;
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  margin-inline: 15px;
   overflow: hidden;
 
   &__table {

@@ -4,6 +4,7 @@ html {
 
 body {
     font-family: $mainFontFamily;
+    font-size: $mainFontSize;
 }
 
 a {
@@ -24,7 +25,7 @@ h6 {
     background-color: #f1f1f1;
     max-width: 1170px;
     padding: 0 15px;
-    margin: 0 auto;
+    margin-inline: auto;
     width: 100%;
     min-height: 95vh;
 }

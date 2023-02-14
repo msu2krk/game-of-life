@@ -2,3 +2,8 @@ $mainFontFamily: 'Roboto Condensed',
 sans-serif;
 $headerFontFamily:'Press Start 2P',
 cursive;
+
+$h1FontSize: clamp(1.875rem, 1.2868rem + 2.9412vw, 3.4375rem);
+$h2FontSize: clamp(1.5625rem, 1.2096rem + 1.7647vw, 2.5rem);
+$mainFontSize: clamp(0.75rem, 0.6794rem + 0.3529vw, 0.9375rem);
+;
